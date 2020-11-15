@@ -36,6 +36,49 @@
             console.log ( numbers [i] )
         }
             </pre>
+            <h2>Урок 2</h2>
+            <h3>Задание 1</h3>
+            <pre>
+        var letters = []
+            str = "Backend As A Service"
+            a=str.split(' ')
+        for (i = 0; i < a.length; i++){
+                letters.push(a[i].charAt(0))
+            }
+        console.log(letters)
+            </pre>
+            <h3>Задание 2</h3>
+            <pre>
+                function checkDate(cDate){
+                    if(Number.isInteger(cDate)){
+                        function formatDate(date) {
+                
+                            var dd = date.getDate();
+                            if (dd < 10) dd = '0' + dd;
+                          
+                            var mm = date.getMonth() + 1;
+                            if (mm < 10) mm = '0' + mm;
+                          
+                            var yy = date.getFullYear();
+                            if (yy < 10) yy = '0' + yy;
+                        
+                            var hh = date.getHours();
+                        
+                            var min = date.getMinutes();
+                            
+                            var sec = date.getSeconds();
+                            if (sec < 10) sec = '0' + sec;
+                
+                            return dd + '.' + mm + '.' + yy + ', ' + hh + ':' + min + ':' + sec;
+                          }
+                          
+                          var d = new Date(); 
+                          console.log( formatDate(d) );
+                    } else{
+                        console.log("Неверный тип данных")
+                    }
+                }
+            </pre>
         </section>
     </div>
 
