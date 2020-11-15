@@ -36,7 +36,66 @@
             console.log ( numbers [i] )
         }
             </pre>
+
+
+
             <h2>Урок 2</h2>
+
+            <h3>Самостоятельная работа 1</h3>
+            <pre>
+                var group = [
+    {
+        name: "Иван",
+        lastName: "Иванов",
+        age: 23,
+        notebook: false,
+    },
+    {
+        name: "Петр",
+        lastName: "Петров",
+        age: 24,
+        notebook: true,
+    },
+    {
+        name: "Антон",
+        lastName: "Антонов",
+        age: 24,
+        notebook: false,
+    }
+]
+
+function getStudentsList(arrayOfStudents) {
+    for (i = 0; i < arrayOfStudents.length; i++) {
+        var a = []
+        a.push(Object.values(group[i]))
+        b = [a[0].join("|")]
+        console.log(b)
+    }
+}
+            </pre>
+
+            <h3>Самостоятельная работа 2</h3>
+            <pre>
+                function addNewStudent(name, lastName, age, notebook) {
+                    a1 = name;
+                    a2 = lastName;
+                    a3 = age;
+                    a4 = notebook;
+                    function obj(name1 = a1, lastName1 = a2, age1 = a3, notebook1 = a4) {
+                        this.name = name1;
+                        this.lastName = lastName1;
+                        this.age = age1;
+                        this.notebook = notebook1;
+                    }
+                    var newObj = new obj
+                    group.push(newObj)
+                }
+                addNewStudent("Юрий", "Юрьев", 30, true)
+                
+                getStudentsList(group)
+            </pre>
+
+
             <h3>Задание 1</h3>
             <pre>
         var letters = []
