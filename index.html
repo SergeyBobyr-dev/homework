@@ -138,6 +138,142 @@ function getStudentsList(arrayOfStudents) {
                     }
                 }
             </pre>
+
+            <h2>Урок 3</h2>
+            <h3>Задание 1</h3>
+            <pre>
+                function testArguments () {
+                    var args = Array.from ( arguments );
+                    for ( var x of args ) {
+                            console.log ( x )
+                        };
+                    console.log ( arguments.callee );
+            }
+            
+            testArguments ( 10, false, "google" );
+            </pre>
+
+            <h3>Задание 2</h3>
+            <pre>
+            var obj1 = {
+                    name: "Иван",
+                    registered: true,
+                    data: "21.12.2019",
+                    getInfo: userInfo,
+            };
+            var obj2 = {
+                    name: "Антон",
+                    registered: false,
+                    data: "",
+                    getInfo: userInfo,
+            };
+            
+            function userInfo(objInfo) {
+                    if (objInfo.registered == true) {
+                            return "Дата регистрации: " + `${objInfo.data}`
+                    } else{
+                            return "Незарегистрированный пользователь: " + `${objInfo.name}`
+                    }
+            };
+            
+            console.log(obj1.getInfo(obj1));
+            </pre>
+            <h3>Задание 3</h3>
+            <pre>
+                var users = [
+        {
+                userId: 14587,
+                name: "Ivan",
+                email: "ivan78@gmail.com"
+        },
+        {
+                userId: 28419,
+                name: "Georg",
+                email: "georg.klep@gmail.com"
+        },
+        {
+                userId: 41457,
+                name: "Stephan",
+                email: "stephan.borg@gmail.com"
+        }
+]
+var posts = [
+        {
+                postId: 7891451,
+                author: 14587,
+                text: "Imagine we can encapsulate these secondary responsibilities in functions"
+        },
+        {
+                postId: 7891452,
+                author: 28419,
+                text: `В конструкторе ключевое слово super используется как функция, вызывающая родительский конструктор. 
+                    Её необходимо вызвать до первого обращения к ключевому слову this в теле конструктора. 
+                    Ключевое слово super также может быть использовано для вызова функций родительского объекта`
+        },
+        {
+                postId: 7891453,
+                author: 28419,
+                text: `DOM не обрабатывает или не вынуждает проверять пространство имен как таковое. 
+                    Префикс пространства имен, когда он связан с конкретным узлом, не может быть изменен`
+        },
+        {
+                postId: 7891454,
+                author: 14587,
+                text: "Ключевое слово super используется для вызова функций, принадлежащих родителю объекта"
+        }
+]
+var comments = [
+        {
+                commentId: 91078454,
+                postId: 7891451,
+                author: 28419,
+                text: `The static String.fromCharCode() method returns a string created 
+                from the specified sequence of UTF-16 code units`
+        },
+        {
+                commentId: 91078455,
+                postId: 7891451,
+                author: 41457,
+                text: `HTML элемент <> — это механизм для отложенного рендера клиентского контента, 
+                    который не отображается во время загрузки, но может быть инициализирован при помощи JavaScript`
+        },
+        {
+                commentId: 91078457,
+                postId: 7891452,
+                author: 41457,
+                text: "Глобальный объект String является конструктором строк, или, последовательностей символов"
+        },
+        {
+                commentId: 91078458,
+                postId: 7891452,
+                author: 14587,
+                text: `The Element.namespaceURI read-only property returns the namespace URI of the element, 
+                    or null if the element is not in a namespace`
+        }
+]
+
+function getCurrentPostComments(postId) {
+        var res = [];
+        for (var x in comments) {
+                var obj = {
+                        author: getCurrentName(comments[x].author),
+                        text: comments[x].text
+                };
+                if (comments[x].postId !== postId) continue
+                res.push(obj);
+        }
+        function getCurrentName(nameId) {
+                for (var x in users) {
+                        if (users[x].userId !== nameId) continue
+                        var nameAuthor = users[x].name;
+                }
+                return nameAuthor
+        }
+        return res
+}
+
+console.log(getCurrentPostComments(7891451))
+            </pre>
         </section>
     </div>
 
