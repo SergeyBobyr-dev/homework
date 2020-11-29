@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/libs.min.css">
     <link rel="stylesheet" href="css/style.min.css">
     <title>Document</title>
@@ -274,6 +273,78 @@ function getCurrentPostComments(postId) {
 
 console.log(getCurrentPostComments(7891451))
             </pre>
+
+        <h2>Урок 4</h2>
+        <h3>Задание 1</h3>
+        <pre>
+var womanBag = [
+    'ключи',
+    'телефон',
+    'помада'
+];
+
+womanBag.addNewThing = function (newThing) {
+    womanBag.push(newThing);
+};
+
+womanBag.delThing = function (delThing) {
+    var index = womanBag.indexOf(delThing);
+    if (index > -1) {
+        womanBag.splice(index, 1);
+    }
+};
+womanBag.addNewThing('пудра');
+womanBag.delThing('телефон');
+console.log(womanBag);
+        </pre>
+
+        <h3>Задание 2</h3>
+        <pre>
+            function LibraryBook(titleInfo, yearInfo, authorInfo, readerNameInfo, readerDataInfo) {
+                var title = titleInfo;
+                var year = yearInfo;
+                var author = authorInfo;
+                var readerName = readerNameInfo;
+                var readerData = readerDataInfo;
+                
+                giveTheBook = function(client){
+                    readerName = client;
+                    readerData = new Date();
+                }
+            
+                this.getBookInfo = function () {
+                    console.log(readerData);
+                }
+                this.getTheBook = function (client){
+                    if (readerName === "") {
+                        giveTheBook(client);
+                        return console.log(title, year, author);
+                    }else{
+                        console.log(null);
+                    }
+                }
+                this.returnBook = function (){
+                    readerName = "";
+                    readerData = "";
+                }
+            }
+            
+            var book = new LibraryBook("Война и мир", 1984, "Л.Н. Толстой", "Петров Иван", "21.11.2020");
+        </pre>
+    
+        <h3>Задание 3</h3>
+        <pre>
+            function NewObj(){
+
+            }
+            NewObj.prototype.addProperty = function (name, property){
+                this [name] = property 
+            }
+            var obj = new NewObj()
+            obj.addProperty("color", "red")
+            
+            console.log(obj)
+        </pre>
         </section>
     </div>
 
