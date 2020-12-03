@@ -345,6 +345,54 @@ console.log(womanBag);
             
             console.log(obj)
         </pre>
+
+        <h2>Урок 5</h2>
+        <h3>Задание 1</h3>
+        <p>Вариант решения 1 самый простой рабочий, но с ошибкой что testFunc не функция</p> 
+        <pre>
+            function sampleFunc () {
+                console.log ( `${arguments.callee.name}: ${arguments[0]} | ${arguments[1]}` )
+            };
+            
+            function modificator ( func ) {
+               func('test', 'sample');
+            };
+            
+            testFunc = modificator( sampleFunc );
+            
+            testFunc();
+        </pre>
+        <p>Вариант решения 2 с bind, но с ошибкой что testFunc не функция</p>
+        <pre>
+            function sampleFunc () {
+                console.log ( `${arguments.callee.name}: ${arguments[0]} | ${arguments[1]}` )
+            };
+            
+            function modificator ( func ) {
+                func.bind (func, 'test', 'sample')();
+            };
+            
+            testFunc = modificator( sampleFunc );
+            
+            testFunc();
+        </pre>
+
+        <p>Вариант решения 3 с исправлением ошибки что testFunc не функция, коректируя условие задачи</p>
+        <pre>
+            function sampleFunc () {
+                console.log ( `${arguments.callee.name}: ${arguments[0]} | ${arguments[1]}` )
+            };
+            
+            function modificator ( func ) {
+                func.bind (func, 'test', 'sample')();
+            };
+            
+            function testFunc (){
+               modificator( sampleFunc ); 
+            } 
+            
+            testFunc();
+        </pre>
         </section>
     </div>
 
