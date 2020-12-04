@@ -369,7 +369,7 @@ console.log(womanBag);
             };
             
             function modificator ( func ) {
-                func.bind (func, 'test', 'sample')();
+                func.bind (null, 'test', 'sample')();
             };
             
             testFunc = modificator( sampleFunc );
@@ -384,7 +384,7 @@ console.log(womanBag);
             };
             
             function modificator ( func ) {
-                func.bind (func, 'test', 'sample')();
+                func.bind (null, 'test', 'sample')();
             };
             
             function testFunc (){
