@@ -369,7 +369,7 @@ console.log(womanBag);
             };
             
             function modificator ( func ) {
-                func.bind (null, 'test', 'sample')();
+                func.bind (func, 'test', 'sample')();
             };
             
             testFunc = modificator( sampleFunc );
@@ -384,7 +384,7 @@ console.log(womanBag);
             };
             
             function modificator ( func ) {
-                func.bind (null, 'test', 'sample')();
+                func.bind (func, 'test', 'sample')();
             };
             
             function testFunc (){
@@ -392,6 +392,40 @@ console.log(womanBag);
             } 
             
             testFunc();
+        </pre>
+
+        <h3>Задание 2</h3>
+        <pre>
+            function sampleFunc (){
+                console.info ( `Symbols in my code: ${arguments.callee + 0}`)
+            };
+            
+            function modificator ( func ) {
+                    console.log (`Symbols in my code: ${func.toString().length}`);
+            };
+            
+            modificator( sampleFunc );
+            
+        </pre>
+
+        <h3>Задание 3</h3>
+        <pre>
+            function testArguments() {
+                function generateError(numArgs) {
+                   var err = new Error ('Invalid arguments');
+                    err.name = "Application";
+                    err.stack = `Function needs 3 arguments, but only ${numArgs} present`;
+                    throw err;
+                }
+                try {
+                    arguments.length >= 3 ? null : generateError(arguments.length);
+                }
+                catch (err) {
+                    console.error(`${err.name}: ${err.message}\n${err.stack}`);
+                }
+            }
+            testArguments("Google");
+            
         </pre>
         </section>
     </div>
