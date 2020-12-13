@@ -427,6 +427,78 @@ console.log(womanBag);
             testArguments("Google");
             
         </pre>
+
+        <h2>Урок 6</h2>
+        <h3>Задание 1</h3>
+        <pre>
+            var tags = ['div', 'img', 'p', 'a'];
+var classes = ['class__div', 'class__img', 'class__p', 'class__a'];
+var style = document.createElement('style');
+document.head.appendChild(style);
+style.innerText = `.class__div{text-align: center;} .class__img{width: 100px; height: 100px;} .class__p{color: red;} .class__a{text-transform: uppercase;}`;
+
+for (i = 0; i < tags.length; i++) {
+    var newEl = document.createElement(tags[i]);
+    document.body.appendChild(newEl);
+    newEl.setAttribute('class', classes[i]);
+}
+        </pre>
+
+        <h3>Задание 2</h3>
+        <pre>
+            var style = document.createElement('style');
+document.head.appendChild(style);
+style.innerText = `.class__div{text-align: center;} .class__p{color: red;} .class__a{text-transform: uppercase;}`;
+
+var tags = [
+    {
+        tag: 'div',
+        class: 'class__div',
+        content: "text",
+        event: function (event) {
+            this.style.backgroundColor = "red";
+        }
+    },
+    {
+        tag: 'p',
+        class: 'class__p',
+        content: "text2",
+        event: function (event) {
+            this.style.backgroundColor = "green";
+        }
+    },
+    {
+        tag: 'a',
+        class: 'class__a',
+        content: "link",
+        event: function (event) {
+            this.style.backgroundColor = "blue";
+        }
+    }
+];
+for (i = 0; i < tags.length; i++) {
+    var newEl = document.createElement(tags[i]['tag']);
+    document.body.appendChild(newEl);
+    newEl.setAttribute('class', tags[i]['class']);
+    newEl.innerText = tags[i]['content'];
+    newEl.onclick = tags[i]['event'];
+}
+        </pre>
+
+        <h3>Задание 3</h3>
+        <pre>
+            var style = document.createElement('style');
+document.head.appendChild(style);
+style.innerText = `.redBack {background-color: red!important;}`;
+
+var tags = document.body.getElementsByTagName('*');
+
+for (i = 0; i < tags.length; i++) {
+        if (tags[i].nodeName !== 'SCRIPT') {
+                tags[i].classList.add('redBack');
+        };
+};
+        </pre>
         </section>
     </div>
 
