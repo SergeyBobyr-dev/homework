@@ -599,6 +599,7 @@ function leave(event) {
     this.style.backgroundColor = "#ff00ff50";
 };
 function clickHandler(event) {
+    event.stopPropagation();
     var el = event.target;
     var elChildren = event.target.children;
     [...elChildren].forEach(
