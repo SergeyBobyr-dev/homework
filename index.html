@@ -499,6 +499,121 @@ for (i = 0; i < tags.length; i++) {
         };
 };
         </pre>
+
+        <h2>Урок 7</h2>
+        <h3>Задание 1</h3>
+        <pre>
+            var par = document.body.appendChild(document.createElement('p'));
+par.textContent = 'text';
+var picture = document.body.appendChild(document.createElement('img'));
+picture.style.transition = 'all 0.5s';
+picture.style.width = '100px';
+picture.style.opacity = '0';
+picture.src = 'https://bipbap.ru/wp-content/uploads/2017/05/VOLKI-krasivye-i-ochen-umnye-zhivotnye.jpg';
+
+par.addEventListener('click', function (event) {
+        picture.style.opacity = "1";
+});
+
+picture.addEventListener ('mouseenter', function (event) {
+        this.style.width = "200px";
+});
+
+picture.addEventListener('mouseleave', function (event) {
+        this.style.width = "100px";
+});
+
+picture.addEventListener('click', function (event) {
+        this.style.opacity = "0";
+});
+        </pre>
+        <h3>Задание 2</h3>
+        <pre>
+        };
+        function insertElement(elemNum, parentElem) {
+            var elem = parentElem.appendChild(document.createElement(elemNew.name));
+            elem.setAttribute('style', elemNew.style);
+            elem.style.width = (400 - elemNum * 50) + "px";
+            elem.style.height = (400 - elemNum * 50) + "px";
+            elem.addEventListener('mouseover', over);
+            elem.addEventListener('mouseout', out);
+            elem.addEventListener('click', clickHandler);
+        
+            return elem;
+        }
+        collection[0] = insertElement(0, document.body);
+        for (var x = 1; x < 4; x++) {
+            collection[x] = insertElement(x, collection[x - 1]);
+        };
+        
+        function over ( event ) {
+            this.style.backgroundColor = "#ffff0050";
+            event.stopPropagation();
+        };
+        function out ( event ) {
+            this.style.backgroundColor = "#ff00ff50";
+        };
+        function clickHandler ( event ) {
+            this.remove();
+            event.stopPropagation();
+        };
+        
+        [ "first", "second", "third", "fourth" ].forEach (
+            function ( tag, index, arr  ) {
+                    collection[index].setAttribute('title', tag);
+            };
+        )
+        </pre>
+        <h3>Задание 3</h3>
+        <pre>
+            var collection = [];
+
+var elemNew = {
+    name: 'div',
+    style: `
+            border: dotted 1px yellow;
+            background-color: #ff00ff50;
+            `
+};
+function insertElement(elemNum, parentElem) {
+    var elem = parentElem.appendChild(document.createElement(elemNew.name));
+    elem.setAttribute('style', elemNew.style);
+    elem.style.width = (400 - elemNum * 50) + "px";
+    elem.style.height = (400 - elemNum * 50) + "px";
+    elem.addEventListener('mouseover', enter);
+    elem.addEventListener('mouseout', leave);
+    elem.addEventListener('click', clickHandler);
+
+    return elem;
+}
+collection[0] = insertElement(0, document.body);
+for (var x = 1; x < 7; x++) {
+    collection[x] = insertElement(x, collection[x - 1]);
+};
+
+function enter(event) {
+    this.style.backgroundColor = "#ffff0050";
+    event.stopPropagation();
+};
+function leave(event) {
+    this.style.backgroundColor = "#ff00ff50";
+};
+function clickHandler(event) {
+    var el = event.target;
+    var elChildren = event.target.children;
+    [...elChildren].forEach(
+        function(element){
+        event.target.parentElement.insertAdjacentElement('beforeEnd', element);
+    });
+    el.remove();
+};
+
+[ 1, 2, 3, 4, 5, 6, 7 ].forEach(
+    function (tag, index, arr) {
+        collection[index].setAttribute('title', tag);
+    }
+);
+        </pre>
         </section>
     </div>
 
