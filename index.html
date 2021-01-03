@@ -615,6 +615,89 @@ function clickHandler(event) {
     }
 );
         </pre>
+
+        <h2>Урок 8</h2>
+        <h3>Задание 1</h3>
+        <pre>
+            var par = document.createElement('p');
+var addPar = document.body.appendChild(par);
+var stopFunc = true;
+
+function showTime() {
+    if (!stopFunc) return false;
+    var date = new Date();
+    var hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours();
+    var minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
+    var seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
+    document.querySelector('p').innerHTML = hours + ':' + minutes + ':' + seconds;
+};
+
+function stopTime() {
+    document.body.removeChild(par)
+    stopFunc = false;
+};
+showTime();
+setInterval(showTime, 1000);
+setTimeout(stopTime, 100000);
+        </pre>
+        <h3>Задание 2</h3>
+        <pre>
+            var typeMessage = (function (velocity) {
+                let container = document.getElementById("demo") ?
+                    document.getElementById("demo") :
+                    document.body.appendChild(
+                        document.createElement("h3")
+                    )
+                container.style = `color: magenta;`
+                var index = 0
+                return function (message) {
+                    var arr = message.split('')       
+                    function showText() {
+                        index++
+                        var letter = arr.shift()
+                        document.querySelector('h3').innerHTML += letter;
+                        if(index === message.length){
+                            clearInterval(int)
+                        }
+                    }
+                    var speed = velocity.toString() + '000';
+                    var int = setInterval(showText, Number(speed));
+                }
+            })(1)
+            
+            typeMessage(`Welcome to the hell`)
+        </pre>
+        <h3>Задание 3</h3>
+        <pre>
+            function User(name) {
+                this.counter = count;
+                this.name = name;
+                this.id = this.counter();
+            }
+            
+            var count = function () {
+                var counter = 0;
+                return function () {
+                    if (this.id === undefined) {
+                        counter++;
+                    } else {
+                        return this.id;
+                    }
+                    return counter;
+                };
+            }();
+            
+            var users = [
+                new User("Семен"),
+                new User("Антон"),
+                new User("Демьян"),
+                new User("Василий")
+            ];
+            
+            console.log(users);
+            users[1].id = users[1].counter();
+                        
+        </pre>
         </section>
     </div>
 
