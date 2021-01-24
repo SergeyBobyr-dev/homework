@@ -930,6 +930,147 @@ console.log(log);
                 }
             )
         </pre>
+
+        <h2>Урок 11</h2>
+        <h3>Задание 1</h3>
+        <p>HTML file</p>
+        <pre>
+            <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css"></style>
+    <title>Document</title>
+</head>
+<body>
+    
+   
+    <script src="imgs.json"></script>
+    <script src="testjs.js"></script>
+</body>
+</html> -->
+        </pre>
+
+
+        <p>JSON file</p>
+        <pre>
+            data = '[{"title": "img1", "ref": "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg"}, {"title": "img2", "ref": "https://bipbap.ru/wp-content/uploads/2017/05/0_897e8_65bcd844_orig.jpg"}, {"title": "img3", "ref": "https://millionstatusov.ru/pic/statpic/all8/5e04c21a52a39.jpg"}]';
+        </pre>
+
+
+        <p>JS file</p>
+        <pre>
+            var jsonImgs = JSON.parse(data);
+
+
+var picture1 = document.body.appendChild(document.createElement('img'));
+picture1.style.width = '250px';
+picture1.src = jsonImgs[0].ref;
+var par1 = document.body.appendChild(document.createElement('p'));
+par1.textContent = jsonImgs[0].title;
+
+var picture2 = document.body.appendChild(document.createElement('img'));
+picture2.style.width = '250px';
+picture2.src = jsonImgs[1].ref;
+var par2 = document.body.appendChild(document.createElement('p'));
+par2.textContent = jsonImgs[1].title;
+
+var picture3 = document.body.appendChild(document.createElement('img'));
+picture3.style.width = '250px';
+picture3.src = jsonImgs[2].ref;
+var par3 = document.body.appendChild(document.createElement('p'));
+par3.textContent = jsonImgs[2].title;
+        </pre>
+
+        <h3>Задание 2</h3>
+        <pre>
+            var messages = [
+    "backspace",
+    "enter",
+    "shift",
+    "control",
+    "delete",
+    "space",
+    "subtract"
+];
+
+var log = {};
+
+messages.getKey = () => {
+    let key = new Date().toLocaleTimeString(), x = 0
+    while ( log [ `${key}[${x}]` ] ) { x++ }
+    return `${key}[${x}]`
+};
+
+var handler = function (message) {
+    Object.defineProperty(log, messages.getKey(), {
+        value: message,
+        enumerable: true
+    })
+};
+
+var sendMessage = message => new Promise (
+    resolve => setTimeout (
+        () => resolve ( message ),
+        Math.random () * 7000
+    )
+);
+
+messages.forEach(
+    message => sendMessage(message).then (message => handler(message))
+);
+
+console.log(log)
+        </pre>
+        <h3>Задание 3</h3>
+        <pre>
+            var messages = [
+    "backspace",
+    "enter",
+    "shift",
+    "control",
+    "delete",
+    "space",
+    "subtract"
+];
+
+var log = {};
+
+messages.getKey = () => new Date().toLocaleTimeString()
+
+var sendMessage = message => new Promise(
+    resolve => setTimeout(
+        () => resolve(message),
+        Math.random() * 7000
+    )
+);
+
+var handler = function (message) {
+    Object.defineProperty(log, messages.getKey(), {
+        value: message,
+        enumerable: true,
+        writable: true,
+        configurable: true
+    })
+};
+var sendAll = () => {
+    var index = 0;
+    function recursive() {
+        var message = messages[index];
+        index++;
+        if (index < messages.length) {
+            sendMessage(message).then(message => handler(message))
+            recursive();
+        }
+    }
+    recursive()
+}
+
+sendAll()
+console.log(log)
+
+        </pre>
         </section>
     </div>
 
