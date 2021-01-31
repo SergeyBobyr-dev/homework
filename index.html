@@ -1071,6 +1071,96 @@ sendAll()
 console.log(log)
 
         </pre>
+
+        <h2>Урок 12</h2>
+        <h3>Задание 1</h3>
+        <pre>
+            var d = new Date
+document.cookie = "lastVizit=" + d
+var res = document.cookie
+    .split("; ")
+    .map(x => {
+        var tmp = x.split("=")
+        var elem = {}
+        elem[tmp[0]] = tmp[1]
+        return elem
+    })
+    
+for (var x of res) {
+    for (var i in x) {
+        if (i === "lastVizit") {
+            var par1 = document.body.appendChild(document.createElement('p'));
+            par1.innerHTML = "Дата последнего посещенгия: " + x.lastVizit;
+        }
+    }
+}
+        </pre>
+
+        <h3>Задание 2</h3>
+        <pre>
+            location.hash = "#"
+var par1 = document.body.appendChild(document.createElement('p'));
+var arr = []
+window.addEventListener('hashchange', function () {
+    var d = new Date().getTime()
+    var obj = {
+        pageId: location.hash,
+        startTime: d
+    }
+    arr.push(obj)
+    localStorage.setItem("history", JSON.stringify(arr))
+    console.log("hash was changed")
+    console.log(localStorage.history)
+    par1.innerHTML = "Страница  " + location.hash;
+});
+        </pre>
+        <h3>Задание 3</h3>
+        <pre>
+            var btn = null;
+function creatBtn() {
+    btn = document.body.appendChild(document.createElement('button'));
+    btn.innerHTML = 'Push';
+    btn.addEventListener('click', start);
+};
+creatBtn();
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+};
+
+
+function start() {
+    btn.remove();
+    var picture1 = document.body.appendChild(document.createElement('img'));
+    picture1.src = "https://thumbs.gfycat.com/LivelyObviousAnhinga-size_restricted.gif";
+    picture1.style.width = '250px';
+    var winner = getRandomInt(1, 20000);
+
+    setTimeout(function () {
+        picture1.src = "https://thumbs.gfycat.com/OddWideHookersealion-small.gif";
+        setTimeout(function () {
+            fetch(`https://api.github.com/user/${winner}`)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    picture1.src = data.avatar_url;
+                    var par = document.body.appendChild(document.createElement('p'));
+                    par.innerHTML = 'Winner is ' + data.name;
+                    
+                    setTimeout(function () {
+                        picture1.remove();
+                        par.remove();
+                        creatBtn();
+                    }, 10000)
+                });
+        }, 2000);
+    }, 4000);
+}
+
+        </pre>
         </section>
     </div>
 
