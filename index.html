@@ -1161,6 +1161,110 @@ function start() {
 }
 
         </pre>
+        <h2>Урок 13</h2>
+        <h3>Задание 1</h3>
+        <pre>
+            var picture = document.createElement ( 'img' )
+document.body.appendChild ( picture )
+
+fetch ( 'https://st4.depositphotos.com/2760050/38014/i/1600/depositphotos_380144956-stock-photo-man-photographer-do-shooting-session.jpg' )
+    .then ( response => {
+        response.blob().then ( response => {
+    	    urlObject = URL.createObjectURL( response)
+            picture.src = urlObject
+        })
+    })
+        </pre>
+        <h3>Задание 2</h3>
+        <pre>
+            var addElem = tagName => document.body.appendChild(
+    document.createElement(tagName)
+)
+
+var selector = addElem('input')
+selector.type = 'file'
+selector.multiple = true
+selector.id = 'selectImages'
+selector.style.display = 'none'
+
+var label = addElem('label')
+
+label.htmlFor = 'selectImages'
+label.innerText = 'Select images'
+
+var testFile = file => new Promise(
+    function (resolve, reject) {
+        if (!file.type.match('image')) {
+            var par = document.body.appendChild(document.createElement('p'));
+            par.textContent = 'Этот файл не изображение';
+        } else {
+            resolve (URL.createObjectURL(file))
+        }
+    }
+)
+
+selector.onchange = function (event) {
+    for (var file of event.target.files) {
+        testFile(file)
+            .then(result => addElem("img").src = result)
+            .catch(error => console.error(error))
+    }
+}
+        </pre>
+
+        <h2>Урок 14</h2>
+        <h3>Задание 1</h3>
+        <pre>
+            let text = 'hello';
+let container = document.body.appendChild(document.createElement("div"));
+function printString(text, container) {
+    let demo = container && container.nodeType === 1 ?
+        container : document.body.appendChild(
+            document.createElement("div")
+        )
+
+    var index = 0;
+    var arr = text.split('');
+    async function showText() {
+        index++;
+        var letter = arr.shift();
+        demo.appendChild(
+            document.createTextNode(letter)
+        );
+        if (index === text.length) {
+            clearInterval(int)
+        };
+    };
+    var int = setInterval(showText, 1000);
+};
+
+printString(text, container);
+        </pre>
+        <h3>Задание 3</h3>
+        <pre>
+            let text = 'hello';
+let container = document.body.appendChild(document.createElement("div"));
+function printString(text, container) {
+    let demo = container && container.nodeType === 1 ?
+        container : document.body.appendChild(
+            document.createElement("div")
+        )
+
+    var arr = text.split('');
+    
+    (function () {
+        var letter = arr.shift();
+        demo.appendChild(
+            document.createTextNode(letter)
+        );
+        if (arr.length !== 0) {
+            setTimeout(arguments.callee, 1000)
+        }
+    })()
+};
+
+printString(text, container);
+        </pre>
         </section>
     </div>
 
